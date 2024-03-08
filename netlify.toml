@@ -1,5 +1,5 @@
 [build]
   base = "."
-  command = "cd frontend && npm run build"
+  command = "npm run build --prefix frontend"
   publish = "frontend/build"
   functions = "backend"
