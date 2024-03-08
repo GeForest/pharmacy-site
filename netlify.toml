@@ -3,3 +3,6 @@
   command = "cd frontend && npm install && npm run build"
   publish = "frontend/build"
   functions = "backend"
+
+[[plugins]]
+package = "@netlify/plugin-functions-install-core"
