@@ -1,5 +1,5 @@
 [build]
-  base = "pharmacy-site"
+  base = ""
   command = "cd frontend && npm install && npm run build"
   publish = "frontend/build"
   functions = "backend"
