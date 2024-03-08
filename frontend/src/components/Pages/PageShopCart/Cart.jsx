@@ -4,7 +4,7 @@ import { useAppContext } from "../../../context/AppContext"
 
 
 function Cart() {
-    const { cart, setCart, totalCost, removeProductCart, increment, decrement, sendOrderOnDB } = useAppContext();
+    const { cart, setCart, totalCost, setTotalCost, removeProductCart, increment, decrement, sendOrderOnDB } = useAppContext();
 
     return (
         <div className={styles.container}>
@@ -47,6 +47,7 @@ function Cart() {
                         onClick={()=>{
                             sendOrderOnDB()
                             setCart([])
+                            setTotalCost(0)
                         }}
                     >Submit</div>
                 </div>

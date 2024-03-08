@@ -37,7 +37,7 @@ export const useOrderFunction = () => {
                 },
                 body: JSON.stringify(order),
             })
-            .then((response) => {
+            .then(() => {
                 setFormData({
                     name: '',
                     email: '',

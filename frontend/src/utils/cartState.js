@@ -59,5 +59,5 @@ export const useCartFunction = () => {
     localStorage.setItem('totalCost', JSON.stringify(totalCost))
   }, [totalCost])
 
-  return { cart, setCart, totalCost, addToCart, removeProductCart, increment, decrement, }
+  return { cart, setCart, totalCost, setTotalCost, addToCart, removeProductCart, increment, decrement, }
 }
