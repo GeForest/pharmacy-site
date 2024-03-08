@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import styles from './PageShopCart.module.css'
 import CartForm from './CartForm';
 import Cart from './Cart';

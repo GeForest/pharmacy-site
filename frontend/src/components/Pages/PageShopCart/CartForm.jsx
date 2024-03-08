@@ -28,7 +28,7 @@ function CartForm() {
                 address: formData.address
             }
         )
-    }, [cart, formData, totalCost, setOrder])
+    }, [cart, formData, roundedTotalCost, setOrder])
 
     return (
     <div className={styles.form}>
