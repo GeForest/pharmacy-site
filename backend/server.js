@@ -26,8 +26,9 @@ connection.once('open', () => {
 
 app.use('/api', apiRoutes);
 
-app.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);
-});
-
-module.exports = app;
+module.exports = async (event, context) => {
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: "Hello from Netlify Function!" }),
+  };
+};
