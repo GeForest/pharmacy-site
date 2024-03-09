@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const apiRoutes = require('./routes/apiRoutes');
+const apiRoutes = require('../../backend/routes/apiRoutes');
 
 const { MONGODB_USERNAME, MONGODB_PASSWORD } = process.env;
 
@@ -26,9 +26,11 @@ connection.once('open', () => {
 
 app.use('/api', apiRoutes);
 
-module.exports = async (event, context) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ message: "Hello from Netlify Function!" }),
-  };
+module.exports = {
+  handler: async (event, context) => {
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: "Hello from Netlify Function!" }),
+    };
+  },
 };
