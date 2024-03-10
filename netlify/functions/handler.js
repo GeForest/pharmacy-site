@@ -10,7 +10,10 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json());
 
-mongoose.connect(`mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@127.0.0.1:27017/pharmacyDB`);
+mongoose.connect(`mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@ac-zlpldwr-shard-00-00.6h3lvf3.mongodb.net:27017,ac-zlpldwr-shard-00-01.6h3lvf3.mongodb.net:27017,ac-zlpldwr-shard-00-02.6h3lvf3.mongodb.net:27017/?replicaSet=atlas-luwyll-shard-0&ssl=true&authSource=admin`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const connection = mongoose.connection;
 
