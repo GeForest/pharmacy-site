@@ -1,8 +1,5 @@
 [build]
   base = ""
-  command = "cd frontend && npm install && npm run build"
+  command = "cd netlify/functions && npm install && cd ../.. && cd frontend && npm install && npm run build"
   publish = "frontend/build"
-  functions = "functions"
-
-[[plugins]]
-package = "@netlify/plugin-functions-install-core"
+  functions = "netlify/functions"
