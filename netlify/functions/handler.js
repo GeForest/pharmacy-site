@@ -11,7 +11,7 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 
 
-mongoose.connect(`mongodb+srv://userReadWrite:wEHaFlrblGDB0ptv@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`);
+mongoose.connect(`mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&ssl=true&appName=Cluster0`);
 
 const connection = mongoose.connection;
 
