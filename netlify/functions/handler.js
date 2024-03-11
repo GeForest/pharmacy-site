@@ -10,7 +10,9 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json());
 
-mongoose.connect(`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`);
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`, {
+  serverless: true
+});
 
 const connection = mongoose.connection;
 
@@ -22,6 +24,10 @@ app.get('/', (req, res) => {
 
 connection.once('open', () => {
   console.log('Connected to MongoDB');
+});
+
+mongoose.connection.on('error', (err) => {
+  console.error('MongoDB connection error:', err);
 });
 
 app.use('/api', apiRoutes);

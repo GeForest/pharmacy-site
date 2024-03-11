@@ -7,7 +7,7 @@ export const usePharmacyFunction = () => {
     const [sortLow, setSortLow] = useState(false)
 
     useEffect(() => {
-        fetch('/api/pharmacies')
+        fetch('/.netlify/functions/handler/api/pharmacies')
         .then((response) => response.json())
         .then((data) => {
             setPharmacies(data.pharmacies)
@@ -20,7 +20,7 @@ export const usePharmacyFunction = () => {
     }, [])
 
     const loadProductsByPharmacy = (pharmacyCollection) => {
-        fetch(`/api/${pharmacyCollection}`)
+        fetch(`/.netlify/functions/handler/api/${pharmacyCollection}`)
         .then((response) => {
             if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
