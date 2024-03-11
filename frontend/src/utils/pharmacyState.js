@@ -7,7 +7,7 @@ export const usePharmacyFunction = () => {
     const [sortLow, setSortLow] = useState(false)
 
     useEffect(() => {
-        fetch('/.netlify/functions/handler/api/pharmacies')
+        fetch('https://pharmacies-online.netlify.app/api/pharmacies')
         .then((response) => response.json())
         .then((data) => {
             setPharmacies(data.pharmacies)

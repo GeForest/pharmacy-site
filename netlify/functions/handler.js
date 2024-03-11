@@ -11,10 +11,7 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 
 
-mongoose.connect(`mongodb+srv://userReadWrite:wEHaFlrblGDB0ptv@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`, {
-      useNewUrlParser: true, 
-      useUnifiedTopology: true
-});
+mongoose.connect(`mongodb+srv://userReadWrite:wEHaFlrblGDB0ptv@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`);
 
 const connection = mongoose.connection;
 
@@ -38,7 +35,7 @@ mongoose.connection.on('error', (err) => {
   console.error('MongoDB connection error:', err);
 });
 
-app.use('/.netlify/functions/handler/api', apiRoutes);
+app.use('/api', apiRoutes);
 
 module.exports = {
   handler: app,
