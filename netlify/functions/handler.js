@@ -35,7 +35,7 @@ mongoose.connection.on('error', (err) => {
   console.error('MongoDB connection error:', err);
 });
 
-app.use('/.netlify/functions/handler/api', apiRoutes);
+app.use('https://pharmacies-online.netlify.app/.netlify/functions/handler/api', apiRoutes);
 
 module.exports = {
   handler: app,
