@@ -41,6 +41,12 @@ process.on('SIGINT', () => {
   });
 });
 
+process.on('exit', () => {
+  mongoose.connection.close(() => {
+    console.log('MongoDB disconnected before function exit');
+  });
+});
+
 module.exports = {
   handler: app,
 };
