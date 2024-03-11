@@ -1,8 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const apiRoutes = require('./apiRoutes');
-// const apiRoutes = require('../../backend/routes/apiRoutes');
+const apiRoutes = require('../../backend/routes/apiRoutes');
 
 const { MONGODB_USERNAME, MONGODB_PASSWORD } = process.env;
 
@@ -29,7 +28,8 @@ mongoose.connection.on('error', (err) => {
   console.error('MongoDB connection error:', err);
 });
 
-app.use('/api', apiRoutes);
+app.use('/.netlify/functions/handler', apiRoutes);
+// app.use('/api', apiRoutes);
 
 module.exports = {
   handler: app,
