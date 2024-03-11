@@ -38,7 +38,7 @@ mongoose.connection.on('error', (err) => {
   console.error('MongoDB connection error:', err);
 });
 
-app.use('/.netlify/functions/handler', apiRoutes);
+app.use('/.netlify/functions/handler/api', apiRoutes);
 
 module.exports = {
   handler: app,
