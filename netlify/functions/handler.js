@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const apiRoutes = require('../../backend/routes/apiRoutes');
+const apiRoutes = require('./apiRoutes');
+// const apiRoutes = require('../../backend/routes/apiRoutes');
 
 const { MONGODB_USERNAME, MONGODB_PASSWORD } = process.env;
 
