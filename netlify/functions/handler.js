@@ -12,7 +12,7 @@ app.use(express.json());
 
 async function initialize() {
   try {
-    await mongoose.connect(`mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`, {
+    await mongoose.connect(`mongodb+srv://newUserReadWrite:HKQ6ez5l4zKBPLSM@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     });
