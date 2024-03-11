@@ -4,7 +4,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 const Pharmacy = require('./models/pharmacy');
-const Product = require('./models/product');
 const Order = require('./models/order');
 
 router.get('/pharmacies', async (req, res) => {

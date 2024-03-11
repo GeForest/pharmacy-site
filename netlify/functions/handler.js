@@ -17,6 +17,8 @@ const connection = mongoose.connection;
 
 const publicPath = path.join(__dirname, '..', 'frontend', 'build');
 app.use(express.static(publicPath));
+
+app.use('/api', apiRoutes);
 app.get('/*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
@@ -35,7 +37,6 @@ mongoose.connection.on('error', (err) => {
   console.error('MongoDB connection error:', err);
 });
 
-app.use('https://pharmacies-online.netlify.app/.netlify/functions/handler/api', apiRoutes);
 
 module.exports = {
   handler: app,
