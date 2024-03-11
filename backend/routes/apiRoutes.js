@@ -10,6 +10,7 @@ const Order = require('../models/order')
 router.get('/pharmacies', async (req, res) => {
   try {
     const pharmacies = await Pharmacy.find();
+    console.log('Pharmacies:', pharmacies)
     res.json({ pharmacies });
   } catch (error) {
     console.error('Error:', error);
