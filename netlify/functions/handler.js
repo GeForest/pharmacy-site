@@ -49,9 +49,14 @@ process.on('SIGINT', () => {
   });
 });
 
-process.on('exit', () => {
+app.use((req, res, next) => {
+  // Закрываем соединение с MongoDB перед завершением приложения
   mongoose.connection.close(() => {
-    console.log('MongoDB disconnected before function exit');
+    console.log('MongoDB connection closed before app termination');
+    // Вызываем admin.app().delete() или другие действия по завершению
+    // приложения перед выходом
+    // admin.app().delete();
+    process.exit(0);
   });
 });
 
