@@ -18,36 +18,52 @@ const connectToMongoDB = async () => {
       useUnifiedTopology: true
     });
     console.log('Connected to MongoDB');
+    startServer();
   } catch (error) {
     console.error('MongoDB connection error:', error);
   }
 };
 
+const startServer = () => {
+  const publicPath = path.join(__dirname, '..', 'frontend', 'build');
+  app.use(express.static(publicPath));
+
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(publicPath, 'index.html'));
+  });
+
+  app.use('/.netlify/functions/handler', apiRoutes);
+
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
+};
+
 connectToMongoDB();
 
-const connection = mongoose.connection;
+// const connection = mongoose.connection;
 
-const publicPath = path.join(__dirname, '..', 'frontend', 'build');
-app.use(express.static(publicPath));
-app.get('/', (req, res) => {
-  res.sendFile(path.join(publicPath, 'index.html'));
-});
+// const publicPath = path.join(__dirname, '..', 'frontend', 'build');
+// app.use(express.static(publicPath));
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(publicPath, 'index.html'));
+// });
 
 // connection.once('open', () => {
 //   console.log('Connected to MongoDB');
 // });
-connection.once('open', () => {
-  console.log('Connected to MongoDB');
-  app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-  });
-});
+// connection.once('open', () => {
+//   console.log('Connected to MongoDB');
+//   app.listen(port, () => {
+//     console.log(`Server is running on port ${port}`);
+//   });
+// });
 
-mongoose.connection.on('error', (err) => {
-  console.error('MongoDB connection error:', err);
-});
+// mongoose.connection.on('error', (err) => {
+//   console.error('MongoDB connection error:', err);
+// });
 
-app.use('/.netlify/functions/handler', apiRoutes);
+// app.use('/.netlify/functions/handler', apiRoutes);
 
 module.exports = {
   handler: app,
