@@ -26,6 +26,14 @@ connection.once('open', () => {
 });
 
 app.use('/api', apiRoutes);
+
+app.use((req, res, next) => {
+  mongoose.connection.close(() => {
+    console.log('MongoDB connection closed after request');
+    next();
+  });
+});
+
 app.get('/*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
