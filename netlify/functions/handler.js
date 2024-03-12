@@ -10,56 +10,98 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json());
 
-async function initialize() {
+export async function handler(event, context) {
   try {
-    await mongoose.connect(`mongodb+srv://newUserReadWrite:HKQ6ez5l4zKBPLSM@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`);
+    await mongoose.connect(`mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
 
     console.log('Connected to MongoDB');
 
     const publicPath = path.join(__dirname, '..', 'frontend', 'build');
     app.use(express.static(publicPath));
 
-    app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    });
-
+    // Define your API routes
     app.use('/api', apiRoutes);
 
-    app.use((req, res, next) => {
-      mongoose.connection.close(() => {
-        console.log('MongoDB connection closed after request');
-        next();
+    // Your other middleware and route handling here
+
+    // Listen for requests
+    const result = await new Promise((resolve, reject) => {
+      const server = app.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
+        resolve({ message: 'Server is running', port });
+      });
+
+      server.on('error', (err) => {
+        reject(err);
       });
     });
 
-    app.get('/*', (req, res) => {
-      res.sendFile(path.join(publicPath, 'index.html'));
-    });
-
-    mongoose.connection.on('error', (err) => {
-      console.error('MongoDB connection error:', err);
-    });
-
-    process.on('SIGINT', () => {
-      mongoose.connection.close(() => {
-        console.log('MongoDB disconnected through app termination');
-        process.exit(0);
-      });
-    });
-
-    app.use((req, res, next) => {
-      mongoose.connection.close(() => {
-        console.log('MongoDB connection closed before app termination');
-        process.exit(0);
-      });
-    });
+    return {
+      body: JSON.stringify(result),
+      statusCode: 200,
+    };
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
-    // Handle error as needed
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Internal Server Error' }),
+    };
   }
 }
 
-initialize();
+// async function initialize() {
+//   try {
+//     await mongoose.connect(`mongodb+srv://newUserReadWrite:HKQ6ez5l4zKBPLSM@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`);
+
+//     console.log('Connected to MongoDB');
+
+//     const publicPath = path.join(__dirname, '..', 'frontend', 'build');
+//     app.use(express.static(publicPath));
+
+//     app.listen(port, () => {
+//       console.log(`Server is running on port ${port}`);
+//     });
+
+//     app.use('/api', apiRoutes);
+
+//     app.use((req, res, next) => {
+//       mongoose.connection.close(() => {
+//         console.log('MongoDB connection closed after request');
+//         next();
+//       });
+//     });
+
+//     app.get('/*', (req, res) => {
+//       res.sendFile(path.join(publicPath, 'index.html'));
+//     });
+
+//     mongoose.connection.on('error', (err) => {
+//       console.error('MongoDB connection error:', err);
+//     });
+
+//     process.on('SIGINT', () => {
+//       mongoose.connection.close(() => {
+//         console.log('MongoDB disconnected through app termination');
+//         process.exit(0);
+//       });
+//     });
+
+//     app.use((req, res, next) => {
+//       mongoose.connection.close(() => {
+//         console.log('MongoDB connection closed before app termination');
+//         process.exit(0);
+//       });
+//     });
+//   } catch (error) {
+//     console.error('Error connecting to MongoDB:', error);
+//     // Handle error as needed
+//   }
+// }
+
+// initialize();
 
 // mongoose.connect(`mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`);
 
@@ -110,6 +152,6 @@ initialize();
 //   });
 // });
 
-module.exports = {
-  handler: app,
-};
+// module.exports = {
+//   handler: app,
+// };
