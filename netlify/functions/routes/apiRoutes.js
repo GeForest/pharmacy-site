@@ -3,8 +3,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
-const Pharmacy = require('./models/pharmacy');
-const Order = require('./models/order');
+const Pharmacy = require('../models/pharmacy');
+const Order = require('../models/order');
 
 router.get('/', async (req, res) => {
   try {
