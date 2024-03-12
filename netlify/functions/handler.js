@@ -24,7 +24,7 @@ async function handler(event, context) {
     // Your other middleware and route handling here
 
     return {
-      body: JSON.stringify(result),
+      body: JSON.stringify({ message: 'Server is running' }),
       statusCode: 200,
     };
   } catch (error) {
