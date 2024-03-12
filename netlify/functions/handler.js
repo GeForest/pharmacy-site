@@ -70,7 +70,7 @@ app.use((req, res, next) => {
   res.status(500).json({ error: 'Function timed out' });
 });
 
-module.exports = app;
+module.exports = {handler: app};
 
 // async function initialize() {
 //   try {
