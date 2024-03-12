@@ -23,8 +23,6 @@ async function handler(event, context) {
 
     console.log('API routes initialized');
 
-    // Your other middleware and route handling here
-
     
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
