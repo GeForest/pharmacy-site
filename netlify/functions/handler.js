@@ -1,47 +1,3 @@
-// const express = require('express');
-// const mongoose = require('mongoose');
-// const path = require('path');
-// const apiRoutes = require('./routes/apiRoutes');
-
-// const { MONGODB_USERNAME, MONGODB_PASSWORD } = process.env;
-
-// const app = express();
-
-// app.use(express.json());
-
-// async function handler(event, context) {
-//   try {
-//     await mongoose.connect(`mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`);
-
-//     console.log('Connected to MongoDB');
-
-//     const publicPath = path.join(__dirname, '..', 'frontend', 'build');
-//     app.use(express.static(publicPath));
-
-//     // Define your API routes
-//     app.use('/api', apiRoutes);
-
-//     console.log('API routes initialized');
-
-//     // Your other middleware and route handling here
-
-//     return {
-//       body: JSON.stringify({ message: 'Server is running' }),
-//       statusCode: 200,
-//     };
-//   } catch (error) {
-//     console.error('Error connecting to MongoDB:', error);
-//     return {
-//       statusCode: 500,
-//       body: JSON.stringify({ error: 'Internal Server Error' }),
-//     };
-//   }
-// }
-
-// module.exports = { handler };
-
-// 
-
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -53,24 +9,33 @@ const app = express();
 
 app.use(express.json());
 
-// Подключаемся к MongoDB
-mongoose.connect(`mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority`);
+async function handler(event, context) {
+  try {
+    await mongoose.connect(`mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`);
 
-console.log('Connected to MongoDB');
+    console.log('Connected to MongoDB');
 
-// Определяем маршруты API
-app.use('/api', apiRoutes);
+    const publicPath = path.join(__dirname, '..', 'frontend', 'build');
+    app.use(express.static(publicPath));
 
-// Статические файлы
-const publicPath = path.join(__dirname, '..', 'frontend', 'build');
-app.use(express.static(publicPath));
+    // Define your API routes
+    app.use('/api', apiRoutes);
 
-// Обработка ошибки тайм-аута
-app.use((req, res, next) => {
-  res.status(500).json({ error: 'Function timed out' });
-});
+    console.log('API routes initialized');
 
-module.exports = {handler: app};
+    // Your other middleware and route handling here
+
+    
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Internal Server Error' }),
+    };
+  }
+}
+
+module.exports = { handler };
 
 // async function initialize() {
 //   try {
