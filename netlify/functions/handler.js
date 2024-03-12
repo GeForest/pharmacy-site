@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json());
 
-export async function handler(event, context) {
+async function handler(event, context) {
   try {
     await mongoose.connect(`mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`, {
       useNewUrlParser: true,
@@ -152,6 +152,4 @@ export async function handler(event, context) {
 //   });
 // });
 
-// module.exports = {
-//   handler: app,
-// };
+module.exports = { handler };
