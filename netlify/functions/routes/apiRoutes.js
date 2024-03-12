@@ -6,7 +6,7 @@ const router = express.Router();
 const Pharmacy = require('../models/pharmacy');
 const Order = require('../models/order');
 
-router.get('/pharmacies', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const pharmacies = await Pharmacy.find();
     console.log('Pharmacies:', pharmacies)
