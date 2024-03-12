@@ -23,7 +23,11 @@ async function handler(event, context) {
 
     console.log('API routes initialized');
 
-    
+    // Your other middleware and route handling here
+
+    return {
+      statusCode: 200,
+    };
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
     return {
