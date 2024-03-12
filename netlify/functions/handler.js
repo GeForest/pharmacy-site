@@ -6,7 +6,6 @@ const apiRoutes = require('./routes/apiRoutes');
 const { MONGODB_USERNAME, MONGODB_PASSWORD } = process.env;
 
 const app = express();
-const port = process.env.PORT || 5000;
 
 app.use(express.json());
 
@@ -23,18 +22,6 @@ async function handler(event, context) {
     app.use('/api', apiRoutes);
 
     // Your other middleware and route handling here
-
-    // Listen for requests
-    const result = await new Promise((resolve, reject) => {
-      const server = app.listen(port, () => {
-        console.log(`Server is running on port ${port}`);
-        resolve({ message: 'Server is running', port });
-      });
-
-      server.on('error', (err) => {
-        reject(err);
-      });
-    });
 
     return {
       body: JSON.stringify(result),
