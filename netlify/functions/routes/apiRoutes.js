@@ -8,6 +8,7 @@ const Order = require('../models/order');
 
 router.get('/', async (req, res) => {
   try {
+    console.log('Received request to /api');
     const pharmacies = await Pharmacy.find();
     console.log('Pharmacies:', pharmacies)
     res.json({ pharmacies });

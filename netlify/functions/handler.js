@@ -21,6 +21,8 @@ async function handler(event, context) {
     // Define your API routes
     app.use('/api', apiRoutes);
 
+    console.log('API routes initialized');
+
     // Your other middleware and route handling here
 
     return {
@@ -35,6 +37,8 @@ async function handler(event, context) {
     };
   }
 }
+
+module.exports = { handler };
 
 // async function initialize() {
 //   try {
@@ -135,5 +139,3 @@ async function handler(event, context) {
 //     process.exit(0);
 //   });
 // });
-
-module.exports = { handler };
