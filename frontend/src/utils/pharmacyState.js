@@ -10,9 +10,9 @@ export const usePharmacyFunction = () => {
         fetch('/.netlify/functions/handler/api/')
         .then((response) => response.json())
         .then((data) => {
-            setPharmacies(data.pharmacies)
+            setPharmacies(data)
 
-            const defaultPharmacy = data.pharmacies[0].products_collection
+            const defaultPharmacy = data[0].products_collection
             setSelectedPharmacy(defaultPharmacy)
             loadProductsByPharmacy(defaultPharmacy)
         })
