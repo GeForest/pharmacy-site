@@ -66,9 +66,9 @@ app.use('/.netlify/functions/api', apiRoutes);
 const publicPath = path.join(__dirname, '..', 'frontend', 'build');
 app.use(express.static(publicPath));
 
-// Обработка ошибки тайм-аута
-app.use((req, res, next) => {
-  res.status(500).json({ error: 'Function timed out' });
+app.use((err, req, res, next) => {
+  console.log(err.stack)
+  res.status(500).json({ error: 'Something broke!' });
 });
 
 module.exports.handler = serverless(app);
