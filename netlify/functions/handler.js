@@ -2,7 +2,7 @@ const express = require('express');
 const serverless = require('serverless-http')
 const mongoose = require('mongoose');
 const path = require('path');
-const apiRoutes = require('./routes/apiRoutes');
+const apiRoutes = require('../../backend/routes/apiRoutes');
 
 const { MONGODB_USERNAME, MONGODB_PASSWORD } = process.env;
 

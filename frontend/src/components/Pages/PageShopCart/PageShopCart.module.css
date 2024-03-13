@@ -201,8 +201,9 @@
 .bottom {
     width: 100%;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    justify-content: space-between;
+    column-gap: 30px;
 }
 
 .bottom__totalPrice {

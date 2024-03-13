@@ -3,14 +3,13 @@ const mongoose = require('mongoose');
 const path = require('path')
 const apiRoutes = require('./routes/apiRoutes');
 
-const { MONGODB_USERNAME, MONGODB_PASSWORD } = process.env;
 
 const app = express();
 const port = process.env.PORT || 8080;
 
 app.use(express.json());
 
-mongoose.connect(`mongodb://pharmacyReadWrite:147369852qWq@127.0.0.1:27017/pharmacyDB`);
+mongoose.connect(`mongodb://<your-user-name>:<your-password>@127.0.0.1:27017/<your-Database-name>`);
 
 const connection = mongoose.connection;
 
