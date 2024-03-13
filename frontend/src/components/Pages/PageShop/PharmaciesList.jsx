@@ -4,7 +4,7 @@ import { useAppContext } from "../../../context/AppContext"
 
 function PharmacyList() {
     const { pharmacies, selectedPharmacy, setSelectedPharmacy, loadProductsByPharmacy } = useAppContext();
-    
+
     return (
     <div className={styles.pharmacies}>
         <div className={styles.pharmacies__shops}>

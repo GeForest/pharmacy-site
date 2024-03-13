@@ -191,3 +191,20 @@
     background: #fff;
     cursor: pointer;
 }
+
+/* Mobile styles */
+
+@media (max-width: 768px) {
+    .pharmacies {
+        width: 7%;
+        min-width: 50px;
+    }
+    .list__buttons {
+        width: 45px;
+        height: 45px;
+        text-align: center;
+    }
+    .list__buttons h2 {
+        font-size: 9px;
+    }
+}
