@@ -43,6 +43,7 @@
 // 
 
 const express = require('express');
+const serverless = require('serverless')
 const mongoose = require('mongoose');
 const path = require('path');
 const apiRoutes = require('./routes/apiRoutes');
@@ -59,7 +60,7 @@ mongoose.connect(`mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0
 console.log('Connected to MongoDB');
 
 // Определяем маршруты API
-app.use('/api', apiRoutes);
+app.use('/.netlify/functions/api', apiRoutes);
 
 // Статические файлы
 const publicPath = path.join(__dirname, '..', 'frontend', 'build');
@@ -70,7 +71,7 @@ app.use((req, res, next) => {
   res.status(500).json({ error: 'Function timed out' });
 });
 
-module.exports.handler = app;
+module.exports.handler = serverless(app);
 
 // async function initialize() {
 //   try {
