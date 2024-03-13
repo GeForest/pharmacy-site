@@ -124,7 +124,6 @@
     height: 300px;
     display: flex;
     flex-direction: column;
-    background: #fff;
     border-radius: 7px;
     background: #fff2b0;
 
@@ -195,6 +194,9 @@
 /* Mobile styles */
 
 @media (max-width: 768px) {
+
+    /* Pharmacy styles */
+
     .pharmacies {
         width: 7%;
         min-width: 50px;
@@ -206,5 +208,15 @@
     }
     .list__buttons h2 {
         font-size: 9px;
+    }
+
+    /* Product styles */
+
+    .products__body {
+        grid-template-columns: repeat(auto-fill, 200px);
+    }
+
+    .body__card {
+        width: 200px;
     }
 }
