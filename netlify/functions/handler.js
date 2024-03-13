@@ -43,7 +43,7 @@
 // 
 
 const express = require('express');
-const serverless = require('serverless')
+const serverless = require('serverless-http')
 const mongoose = require('mongoose');
 const path = require('path');
 const apiRoutes = require('./routes/apiRoutes');
