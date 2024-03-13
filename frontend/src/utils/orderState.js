@@ -30,7 +30,7 @@ export const useOrderFunction = () => {
         if(hasEmptyFields) {
             alert('Fill in all the fields')
         } else {
-            fetch('/api/orders', {
+            fetch('/.netlify/functions/handler/orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

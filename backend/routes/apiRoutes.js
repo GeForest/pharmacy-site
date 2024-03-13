@@ -1,5 +1,3 @@
-// routes/apiRoutes.js
-
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
@@ -10,7 +8,6 @@ const Order = require('../models/order')
 router.get('/pharmacies', async (req, res) => {
   try {
     const pharmacies = await Pharmacy.find();
-    console.log('Pharmacies:', pharmacies)
     res.json({ pharmacies });
   } catch (error) {
     console.error('Error:', error);
@@ -34,7 +31,6 @@ router.get('/:pharmacyCollection', async (req, res) => {
 router.post('/orders', async(req, res)=>{
   try {
     const orderDate = req.body
-    console.log(orderDate);
     const newOrder = new Order(orderDate)
     await newOrder.save()
     res.json({ success: true, message: 'Order has been successfully placed.' });
