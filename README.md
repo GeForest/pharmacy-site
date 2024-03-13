@@ -3,6 +3,16 @@ An online pharmacy store where you can choose a pharmacy and load the products o
 
 ## Running the application locally
 
+### Frontend
+
+1. Navigate to the frontend folder:
+
+    cd frontend
+
+2. Install dependencies:
+
+    npm run build
+
 ### Backend
 
 1. Navigate to the backend folder:
@@ -15,25 +25,9 @@ An online pharmacy store where you can choose a pharmacy and load the products o
 
 3. Start the server:
 
-    node server.js
-
-The server will be available at http://localhost:5000.
-
-### Frontend
-
-1. Navigate to the frontend folder:
-
-    cd frontend
-
-2. Install dependencies:
-
-    npm install
-
-3. Start the application:
-
     npm start
 
-The application will be available at http://localhost:3000.
+The server and application will be available at http://localhost:8080.
 
 ### MongoDB
 
@@ -69,6 +63,7 @@ The application will be available at http://localhost:3000.
 
     mongosh -u yourAdminUser -p your-password --authenticationDatabase admin
 
+
 ## Deploying applications to Netlify
 
 ### Function for Netlify
@@ -83,8 +78,20 @@ The application will be available at http://localhost:3000.
 
     build configuration how your application will be deployed.
     plugins configuration is needed for netlify to install dependencies automatically.
+    [build]
+    base = ""
+    command = "cd frontend && npm install && npm run build"
+    publish = "frontend/build"
+    functions = "netlify/functions"
+
+    [[plugins]]
+    package = "@netlify/plugin-functions-install-core"
+
+    [[redirects]]
+    from = "/*"
+    to = "/index.html"
+    status = 200
 
 4. There should be a package.json file at the root of your project, which should contain the dependencies needed to run your application.
 
 ### Go to the Netlify website and import the selected project from GitHub and add your environment changes, you should have a netlify.toml file in the root of the project, it configures deployment to Netlify
-
