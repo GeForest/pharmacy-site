@@ -55,7 +55,7 @@ const app = express();
 app.use(express.json());
 
 // Подключаемся к MongoDB
-mongoose.connect(`mongodb+srv://userDB:SjKM7pt8OfFU3KEH@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`);
+mongoose.connect(`mongodb+srv://userPharmacyDB:aPY9CXKJ1Hr41VYp@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`);
 
 console.log('Connected to MongoDB');
 
