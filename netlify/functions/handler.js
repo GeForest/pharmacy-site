@@ -48,14 +48,14 @@ const mongoose = require('mongoose');
 const path = require('path');
 const apiRoutes = require('./routes/apiRoutes');
 
-const { MONGODB_USERNAME, MONGODB_PASSWORD } = process.env;
+// const { MONGODB_USERNAME, MONGODB_PASSWORD } = process.env;
 
 const app = express();
 
 app.use(express.json());
 
 // Подключаемся к MongoDB
-mongoose.connect(`mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`);
+mongoose.connect(`mongodb+srv://userDB:SjKM7pt8OfFU3KEH@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`);
 
 console.log('Connected to MongoDB');
 
