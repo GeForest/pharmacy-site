@@ -60,7 +60,7 @@ mongoose.connect(`mongodb+srv://userPharmacyDB:aPY9CXKJ1Hr41VYp@cluster0.6h3lvf3
 console.log('Connected to MongoDB');
 
 // Определяем маршруты API
-app.use('/api', apiRoutes);
+app.use('/.netlify/functions/handler', apiRoutes);
 
 // Статические файлы
 const publicPath = path.join(__dirname, '..', 'frontend', 'build');
