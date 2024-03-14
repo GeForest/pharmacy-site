@@ -45,9 +45,7 @@ function Cart() {
                     <div className={styles.bottom__totalPrice}>Total price: {totalCost < 0 ? '0.00' : totalCost.toFixed(2)} &euro;</div>
                     <div className={styles.bottom__button}
                         onClick={()=>{
-                            sendOrderOnDB()
-                            setCart([])
-                            setTotalCost(0)
+                            sendOrderOnDB(setCart, setTotalCost)
                         }}
                     >Submit</div>
                 </div>

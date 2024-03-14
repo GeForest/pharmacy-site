@@ -28,7 +28,7 @@ export const useOrderFunction = () => {
         }))
     }
 
-    const sendOrderOnDB = () => {
+    const sendOrderOnDB = (cartSetter, totalCostSetter) => {
         const {products, totalCost, name, email, phone, address} = order
         const hasEmptyFields = !products.length || !totalCost || !name || !email || !phone || !address
 
@@ -49,6 +49,8 @@ export const useOrderFunction = () => {
                     phone: '',
                     address: '',
                 });
+                cartSetter([])
+                totalCostSetter(0)
                 alert('Your is order in processes')
             })
             .catch(error => {
