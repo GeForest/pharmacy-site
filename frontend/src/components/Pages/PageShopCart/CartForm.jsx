@@ -4,7 +4,7 @@ import { useAppContext } from "../../../context/AppContext"
 
 function CartForm() {
 
-    const {formData, cart, totalCost, setOrder, updateFormData} = useAppContext()
+    const {formData, cart, totalCost, setOrder, updateFormData, isActive, setIsActive} = useAppContext()
     const roundedTotalCost = Number(totalCost.toFixed(2));
 
       
@@ -31,8 +31,13 @@ function CartForm() {
     }, [cart, formData, roundedTotalCost, setOrder])
 
     return (
-    <div className={styles.form}>
-        <div className={styles.form__body}>
+    <div className={`${styles.form} 
+        ${isActive.isToggle ? styles.active : ''}`}
+        onClick={()=>setIsActive(
+            {...isActive, isToggle: false}
+        )}
+    >
+        <div className={styles.form__body} onClick={(e) => e.stopPropagation()}>
             {Object.entries(formData).map(([inputName, inputValue], index)=>{
                 const changeInputName = inputName[0].toUpperCase() + inputName.slice(1);
                 return (

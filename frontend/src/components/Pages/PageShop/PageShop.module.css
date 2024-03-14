@@ -220,3 +220,14 @@
         width: 200px;
     }
 }
+
+@media (max-width: 566px) {
+    .products__body {
+        grid-template-columns: repeat(auto-fill, 85%);
+    }
+
+    .body__card {
+        width: 85%;
+        min-width: 200px;
+    }
+}

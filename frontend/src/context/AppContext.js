@@ -8,14 +8,14 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
     const { cart, setCart, totalCost, setTotalCost, addToCart, removeProductCart, increment, decrement } = useCartFunction()
     const { pharmacies, setPharmacies, selectedPharmacy, setSelectedPharmacy, products, setProducts, loadProductsByPharmacy, sortProducts, sortByFavorite } = usePharmacyFunction()
-    const {  formData, updateFormData, setOrder, sendOrderOnDB} = useOrderFunction()
+    const {  formData, updateFormData, setOrder, sendOrderOnDB, isActive, setIsActive } = useOrderFunction()
 
     const value= {cart, totalCost, 
         addToCart, setCart, setTotalCost, removeProductCart, 
         increment, decrement,
         pharmacies, setPharmacies, selectedPharmacy, setSelectedPharmacy, 
         products, setProducts, loadProductsByPharmacy, sortProducts, sortByFavorite,
-         formData, updateFormData, setOrder, sendOrderOnDB
+         formData, updateFormData, setOrder, sendOrderOnDB, isActive, setIsActive
     }
 
     return (

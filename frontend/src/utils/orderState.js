@@ -16,6 +16,11 @@ export const useOrderFunction = () => {
         address: '',
     })
 
+    const [isActive, setIsActive] = useState({
+        isNotAllFillField: false,
+        isToggle: false
+    })
+
     const updateFormData = (name, value) => {
         setFormData((prevData) => ({
             ...prevData,
@@ -29,6 +34,7 @@ export const useOrderFunction = () => {
 
         if(hasEmptyFields) {
             alert('Fill in all the fields')
+            setIsActive({...isActive, isNotAllFillField: true})
         } else {
             fetch('/.netlify/functions/handler/orders', {
                 method: 'POST',
@@ -55,5 +61,5 @@ export const useOrderFunction = () => {
 
     
 
-    return { setOrder, formData, updateFormData, sendOrderOnDB }
+    return { setOrder, formData, updateFormData, sendOrderOnDB, isActive, setIsActive }
 }

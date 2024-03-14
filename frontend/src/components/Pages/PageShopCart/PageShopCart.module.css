@@ -6,6 +6,12 @@
     column-gap: 30px;
 }
 
+/* Form button styles*/
+
+.shop__button {
+    display: none;
+}
+
 /* Form styles */
 
 .form {
@@ -13,7 +19,6 @@
     min-width: 220px;
     height: 100%;
     display: flex;
-
 }
 
 .form__body {
@@ -217,4 +222,96 @@
     border-radius: 10px;
     background: #fff2b0;
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+
+    .shop__cart {
+        position: relative;
+        justify-content: flex-end;
+    }
+
+    /* Form button styles */
+
+    .shop__button {
+        display: block;
+        position: absolute;
+        top: 7px;
+        left: 7px;
+        width: 30px;
+        height: 30px;
+        background: url('../../../assets/icons/form-icon.png') 50%/cover no-repeat;
+        cursor: pointer;
+        z-index: 100;
+        transition: border 1s;
+    }
+
+    .active__warn {
+        border: 1px solid #cd0000;
+        border-radius: 5px;
+    }
+
+    /* Form styles */
+
+    .form {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .form.active {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .form__body {
+        padding: 40px 7px;
+        width: 20%;
+        min-width: 220px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 15px;
+        background: #fff;
+    }
+
+    .body__input {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+
+    /* Cart styles */
+
+    .container {
+        width: 85%;
+    }
+
+    /* Bottom styles */
+
+    .container__bottom {
+        padding-top: 15px;
+    }
+
+    .bottom {
+        justify-content: space-between;
+        column-gap: 10px;
+    }
+
+    .bottom__totalPrice {
+        padding: 10px 5px;
+        font-size: 17px;
+    }
+
+    .bottom__button {
+        padding: 20px 40px;
+    }
+
 }
