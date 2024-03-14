@@ -261,6 +261,7 @@
         display: flex;
         visibility: hidden;
         opacity: 0;
+        z-index: 90;
         transition: opacity 0.3s ease, visibility 0.3s ease;
     }
 
