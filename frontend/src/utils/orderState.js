@@ -33,7 +33,6 @@ export const useOrderFunction = () => {
         const hasEmptyFields = !products.length || !totalCost || !name || !email || !phone || !address
 
         if(hasEmptyFields) {
-            alert('Fill in all the fields')
             setIsActive({...isActive, isNotAllFillField: true})
         } else {
             fetch('/.netlify/functions/handler/orders', {
