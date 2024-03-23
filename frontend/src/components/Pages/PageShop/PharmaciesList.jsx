@@ -5,6 +5,10 @@ import { useAppContext } from "../../../context/AppContext"
 function PharmacyList() {
     const { pharmacies, selectedPharmacy, setSelectedPharmacy, loadProductsByPharmacy } = useAppContext();
 
+    if (!pharmacies || pharmacies.length === 0) {
+        return <p>Loading...</p>;
+    }
+
     return (
     <div className={styles.pharmacies}>
         <div className={styles.pharmacies__shops}>
