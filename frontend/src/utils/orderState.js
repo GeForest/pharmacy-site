@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { apiOrder } from "../api/apiOrder";
 
 export const useOrderFunction = () => {
     const [order, setOrder] = useState({
@@ -28,21 +29,15 @@ export const useOrderFunction = () => {
         }))
     }
 
-    const sendOrderOnDB = (cartSetter, totalCostSetter) => {
+    const sendOrderOnDB = async (order, cartSetter, totalCostSetter) => {
         const {products, totalCost, name, email, phone, address} = order
         const hasEmptyFields = !products.length || !totalCost || !name || !email || !phone || !address
 
         if(hasEmptyFields) {
             setIsActive({...isActive, isNotAllFillField: true})
         } else {
-            fetch('/.netlify/functions/handler/orders', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(order),
-            })
-            .then(() => {
+            try {
+                await apiOrder(order)
                 setFormData({
                     name: '',
                     email: '',
@@ -52,11 +47,10 @@ export const useOrderFunction = () => {
                 cartSetter([])
                 totalCostSetter(0)
                 alert('Your is order in processes')
-            })
-            .catch(error => {
-              console.error('Error:', error);
-            });
-
+            } catch (error) {
+                console.error('Error posting order:', error)
+                throw error
+            }
         }
     }
 
