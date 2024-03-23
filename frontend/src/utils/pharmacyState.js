@@ -1,4 +1,6 @@
 import {useState, useEffect} from "react"
+import { apiPharmacy } from "../api/apiPharmacy"
+import { apiProduct } from "../api/apiProduct"
 
 export const usePharmacyFunction = () => {
     const [pharmacies, setPharmacies] = useState([])
@@ -7,30 +9,32 @@ export const usePharmacyFunction = () => {
     const [sortLow, setSortLow] = useState(false)
 
     useEffect(() => {
-        fetch('/.netlify/functions/handler/pharmacies')
-        .then((response) => response.json())
-        .then((data) => {
-            setPharmacies(data.pharmacies)
-
-            const defaultPharmacy = data.pharmacies[0].products_collection
+        const getPharmaciesData = async () => {
+            try {
+            const pharmacyData = await apiPharmacy()
+            setPharmacies(pharmacyData.pharmacies)
+            const defaultPharmacy = pharmacyData.pharmacies[0].products_collection
             setSelectedPharmacy(defaultPharmacy)
             loadProductsByPharmacy(defaultPharmacy)
-        })
-        .catch((error) => console.error('Error fetching pharmacies:', error));
+            } catch (err) {
+                console.error('Error fetching pharmacies:', err)
+            }
+        }
+
+        getPharmaciesData()
     }, [])
 
     const loadProductsByPharmacy = (pharmacyCollection) => {
-        fetch(`/.netlify/functions/handler/${pharmacyCollection}`)
-        .then((response) => {
-            if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+        const getProductsData = async () => {
+            try {
+                const productData = await apiProduct(pharmacyCollection)
+                setProducts([...productData])
+            } catch (error) {
+                console.error('Error fetching products:', error);
             }
-            return response.json();
-        })
-        .then((data) => {
-            setProducts([...data])
-        })
-        .catch((error) => console.error('Error fetching products:', error));
+        }
+
+        getProductsData()
     };
 
     const sortProducts = () => {
