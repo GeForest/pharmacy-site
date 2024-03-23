@@ -29,7 +29,7 @@ export const useOrderFunction = () => {
         }))
     }
 
-    const sendOrderOnDB = async (order, cartSetter, totalCostSetter) => {
+    const sendOrderOnDB = async (cartSetter, totalCostSetter) => {
         const {products, totalCost, name, email, phone, address} = order
         const hasEmptyFields = !products.length || !totalCost || !name || !email || !phone || !address
 
