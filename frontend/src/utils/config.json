@@ -1,7 +1,5 @@
 {
     "request": {
-        "url": "/.netlify/functions/handler/",
-        "idPharmacy": "pharmacies",
-        "idOrder": "orders"
+        "url": "/.netlify/functions/handler/"
     }
 }

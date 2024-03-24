@@ -1,7 +1,7 @@
-import { apiRequestGet } from './apiRequestGet';
-import { apiRequestPost } from './apiRequestPost';
+import instance from "./instance"
 
 export const apiRequests = {
-    getItems: (url, id) => apiRequestGet(url, id),
-    postItems: (url, id, order) => apiRequestPost(url, id, order),
+    getPharmacies: () => instance.get('pharmacies'),
+    getProducts: (id) => instance.get(id),
+    postItems: (order) => instance.post('orders', order),
 }
