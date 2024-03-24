@@ -12,12 +12,12 @@ const instance = axios.create({
 instance.interceptors.request.use(
     (config) => {
         if (localStorage.token) {
-            config.headers.Authorization = `Bearer ${localStorage.token}`,
-            config.headers["Content-Type"] = "application/json"
+            config.headers.Authorization = `Bearer ${localStorage.token}`;
+            config.headers["Content-Type"] = "application/json";
         } else {
-            delete config.headers.Authorization
+            delete config.headers.Authorization;
         }
-        return config
+        return config;
     },
     (err) => {
         alert("Something is wrong")
