@@ -11,6 +11,7 @@ export const usePharmacyFunction = () => {
         const getPharmaciesData = async () => {
             try {
             const pharmacyData = await PharmaciesApi.pharmacy.getPharmacies()
+            console.log(pharmacyData, pharmacyData.pharmacies)
             setPharmacies(pharmacyData.pharmacies)
             const defaultPharmacy = pharmacyData.pharmacies[0].products_collection
             setSelectedPharmacy(defaultPharmacy)
