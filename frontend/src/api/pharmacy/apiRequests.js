@@ -4,10 +4,10 @@ export default function requests(instance) {
             return instance.get('pharmacies')
         },
         getProducts(id) {
-            return instance.instance.get(id)
+            return instance.get(id)
         },
         postOrders(order) {
-            return instance.instance.post('orders', order)
+            return instance.post('orders', order)
         },
   }
 }
