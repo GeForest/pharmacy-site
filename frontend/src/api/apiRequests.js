@@ -2,6 +2,6 @@ import { apiRequestGet } from './apiRequestGet';
 import { apiRequestPost } from './apiRequestPost';
 
 export const apiRequests = {
-    getItems: apiRequestGet(url, id),
-    postItems: apiRequestPost(url, id, order),
+    getItems: (url, id) => apiRequestGet(url, id),
+    postItems: (url, id, order) => apiRequestPost(url, id, order),
 }
