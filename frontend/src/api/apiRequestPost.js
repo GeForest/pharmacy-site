@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-export const apiOrder = async (order) => {
+export const apiRequestPost = async (url, id, order) => {
     try {
-        await axios.post('/.netlify/functions/handler/orders', order,{
+        await axios.post(`${url}${id}`, order,{
             headers: {'Content-Type': 'application/json',}
         })
     } catch (err) {

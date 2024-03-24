@@ -1,9 +1,8 @@
 import axios from 'axios'
 
-export const apiPharmacy = async () => {
+export const apiRequestGet = async (url, id) => {
     try {
-    const response = await axios.get('/.netlify/functions/handler/pharmacies')
-    console.log(response.data);
+    const response = await axios.get(`${url}${id}`)
     return response.data;
     } catch (err){
         console.error('Error fetching pharmacies:', err);

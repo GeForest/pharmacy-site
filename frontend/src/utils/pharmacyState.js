@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react"
-import { apiPharmacy } from "../api/apiPharmacy"
-import { apiProduct } from "../api/apiProduct"
+import { apiRequests } from "../api//apiRequests"
+import { request } from './config.json'
 
 export const usePharmacyFunction = () => {
     const [pharmacies, setPharmacies] = useState([])
@@ -11,7 +11,7 @@ export const usePharmacyFunction = () => {
     useEffect(() => {
         const getPharmaciesData = async () => {
             try {
-            const pharmacyData = await apiPharmacy()
+            const pharmacyData = await apiRequests.getItems(request.url, request.idPharmacy)
             setPharmacies(pharmacyData.pharmacies)
             const defaultPharmacy = pharmacyData.pharmacies[0].products_collection
             setSelectedPharmacy(defaultPharmacy)
@@ -27,7 +27,7 @@ export const usePharmacyFunction = () => {
     const loadProductsByPharmacy = (pharmacyCollection) => {
         const getProductsData = async () => {
             try {
-                const productData = await apiProduct(pharmacyCollection)
+                const productData = await apiRequests.getItems(request.url, pharmacyCollection)
                 setProducts([...productData])
             } catch (error) {
                 console.error('Error fetching products:', error);

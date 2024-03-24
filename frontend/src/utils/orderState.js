@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { apiOrder } from "../api/apiOrder";
+import { apiRequests } from "../api//apiRequests"
+import { request } from './config.json'
 
 export const useOrderFunction = () => {
     const [order, setOrder] = useState({
@@ -37,7 +38,7 @@ export const useOrderFunction = () => {
             setIsActive({...isActive, isNotAllFillField: true})
         } else {
             try {
-                await apiOrder(order)
+                await apiRequests.postItems(request.url, request.idOrder, order)
                 setFormData({
                     name: '',
                     email: '',
