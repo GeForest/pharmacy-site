@@ -10,10 +10,9 @@ export const usePharmacyFunction = () => {
     useEffect(() => {
         const getPharmaciesData = async () => {
             try {
-            const pharmacyData = await PharmaciesApi.pharmacy.getPharmacies()
-            console.log(pharmacyData, pharmacyData.pharmacies)
-            setPharmacies(pharmacyData.pharmacies)
-            const defaultPharmacy = pharmacyData.pharmacies[0].products_collection
+            const { data } = await PharmaciesApi.pharmacy.getPharmacies()
+            setPharmacies(data.pharmacies)
+            const defaultPharmacy = data.pharmacies[0].products_collection
             setSelectedPharmacy(defaultPharmacy)
             loadProductsByPharmacy(defaultPharmacy)
             } catch (err) {
@@ -27,8 +26,8 @@ export const usePharmacyFunction = () => {
     const loadProductsByPharmacy = (pharmacyCollection) => {
         const getProductsData = async () => {
             try {
-                const productData = await PharmaciesApi.pharmacy.getProducts(pharmacyCollection)
-                setProducts([...productData])
+                const { data } = await PharmaciesApi.pharmacy.getProducts(pharmacyCollection)
+                setProducts([...data])
             } catch (error) {
                 console.error('Error fetching products:', error);
             }
