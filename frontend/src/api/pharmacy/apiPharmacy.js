@@ -1,6 +1,8 @@
 import instance from "../instance"
 import requests from './apiRequests'
 
-export default {
+const PharmaciesApi = {
     pharmacy: requests(instance),
 }
+
+export default PharmaciesApi;

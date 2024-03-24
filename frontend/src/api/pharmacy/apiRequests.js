@@ -1,4 +1,4 @@
-export default function (instance) {
+export default function requests(instance) {
     return {
         getPharmacies() {
             return instance.get('pharmacies')
