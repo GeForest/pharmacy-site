@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { apiRequests } from "../api//apiRequests"
+import PharmaciesApi from "../api/pharmacy/apiPharmacy"
 
 export const useOrderFunction = () => {
     const [order, setOrder] = useState({
@@ -37,7 +37,7 @@ export const useOrderFunction = () => {
             setIsActive({...isActive, isNotAllFillField: true})
         } else {
             try {
-                await apiRequests.postItems(order)
+                await PharmaciesApi.pharmacy.postOrders(order)
                 setFormData({
                     name: '',
                     email: '',

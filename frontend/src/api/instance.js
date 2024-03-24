@@ -1,6 +1,6 @@
 import axios from "axios"
-import config from './config.json'
-const mainUrl = config.request.url
+import configUrl from './config.json'
+const mainUrl = configUrl.request.url
 
 const instance = axios.create({
     baseURL: mainUrl,
