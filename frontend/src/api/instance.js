@@ -1,8 +1,8 @@
 import axios from "axios"
-const mainUrl = process.env.REACT_APP_API_URL
+const { MAIN_API_URL } = process.env
 
 const instance = axios.create({
-    baseURL: mainUrl,
+    baseURL: MAIN_API_URL,
     headers: {
         accept: 'application/json'
     }
