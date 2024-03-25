@@ -15,7 +15,7 @@ function Notification () {
 
       return () => clearTimeout(timer);
   }
-  }, [notice]);
+  }, [notice, setNotice]);
 
   return (
     <div className={`${styles.notice} ${notice.state ? styles.active : ''}`}>
