@@ -1,6 +1,7 @@
 import axios from "axios"
 const { MAIN_API_URL } = process.env
 
+console.log(MAIN_API_URL);
 const instance = axios.create({
     baseURL: MAIN_API_URL,
     headers: {
