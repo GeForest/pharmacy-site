@@ -3,13 +3,19 @@ import { useState, useEffect } from "react";
 export const useCartFunction = () => {
   const [cart, setCart] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
+  const [notice, setNotice] = useState({
+    state: false,
+    productName: ''
+  });
 
   const addToCart = (product) => {
     const productExist = cart.find(el => el._id === product._id)
     if (!productExist) {
       setCart([...cart, { ...product }])
+      setNotice(prevState=> ({ ...prevState, state: true, productName: product.name }))
     } else {
       increment(product._id, product.price)
+      setNotice(prevState=> ({ ...prevState, state: true, productName: product.name }))
     }
     setTotalCost(totalCost + product.price)
   }
@@ -59,5 +65,5 @@ export const useCartFunction = () => {
     localStorage.setItem('totalCost', JSON.stringify(totalCost))
   }, [totalCost])
 
-  return { cart, setCart, totalCost, setTotalCost, addToCart, removeProductCart, increment, decrement, }
+  return { cart, setCart, totalCost, setTotalCost, addToCart, removeProductCart, increment, decrement, notice, setNotice }
 }

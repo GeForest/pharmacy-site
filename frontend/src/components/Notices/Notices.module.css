@@ -1,0 +1,29 @@
+.notice {
+    padding: 10px;
+    position: fixed;
+    max-width: 300px;
+    top: 20px;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    border-radius: 25px;
+    transform: translate( -50%, 0);
+    transition: opacity .5s;
+    background: #fff2b0ac;
+    z-index: 1000;
+}
+
+.notice__text {
+    padding: 10px;
+    font-size: 20px;
+    color: #2b2a2a;
+}
+
+.notice.active {
+    visibility: visible;
+    opacity: 1;
+}
