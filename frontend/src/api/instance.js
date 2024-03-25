@@ -1,6 +1,6 @@
 import axios from "axios"
 import configUrl from './config.json'
-const mainUrl = configUrl.request.url
+const mainUrl = process.env.REACT_APP_API_URL
 
 const instance = axios.create({
     baseURL: mainUrl,
