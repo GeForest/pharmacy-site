@@ -25,7 +25,7 @@ export const useCartFunction = () => {
     setIsChecked(prevState=> prevState.filter(el=>el !== product._id))
     setTotalCost(prevTotalCost => prevTotalCost - (product.price * product.count))
     setProducts(prevProducts => prevProducts.map(prevProduct =>
-      prevProduct._id === id ? { ...prevProduct, count: prevProduct.count - 1 } : prevProduct
+      prevProduct._id === product._id ? { ...prevProduct, count: prevProduct.count = 1 } : prevProduct
     ));
   }
 
