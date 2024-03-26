@@ -1,9 +1,10 @@
 import axios from "axios"
-
-const MAIN_API_URL = process.env.REACT_APP_URL
+// import dotenv from 'dotenv';
+// dotenv.config();
+// const MAIN_API_URL = process.env.REACT_APP_URL
 
 const instance = axios.create({
-    baseURL: MAIN_API_URL,
+    baseURL: '/api',
     headers: {
         accept: 'application/json'
     }

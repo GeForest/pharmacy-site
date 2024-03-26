@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path')
-
+require('dotenv').config();
 const apiRoutes = require('./routes/apiRoutes');
 const USERNAME = process.env.MONGODB_USERNAME;
 const PASSWORD = process.env.MONGODB_PASSWORD;
@@ -11,6 +11,7 @@ const port = process.env.PORT || 8080;
 
 app.use(express.json());
 
+// mongoose.connect(`mongodb://<your-user-name>:<your-password>@127.0.0.1:27017/<your-Database-name>`);
 mongoose.connect(`mongodb+srv://${USERNAME}:${PASSWORD}@cluster0.6h3lvf3.mongodb.net/pharmacyDB?retryWrites=true&w=majority&appName=Cluster0`);
 
 

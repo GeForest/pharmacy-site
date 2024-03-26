@@ -3,23 +3,32 @@ import styles from './Notices.module.css';
 import { useAppContext } from '../../context/AppContext';
 
 function Notification () {
-  const {notice, setNotice} = useAppContext()
+  const {notice, setNotice } = useAppContext()
 
-  console.log(notice);
+  const resetNotice = () => ({
+    state: false,
+    modification: {
+      add: 'Add to cart: ',
+      remove: 'Removed from cart: ',
+    },
+    title: ''
+  })
+
   useEffect(() => {
-    console.log(notice)
     if(notice.state){
       const timer = setTimeout(() => {
-        setNotice({state: false, productName: ''});
-      }, 3000);
+        setNotice(resetNotice());
+      }, 1800);
 
       return () => clearTimeout(timer);
   }
   }, [notice, setNotice]);
 
+  const noticeText = notice.operation ? notice.modification[notice.operation] || '' : ''
+
   return (
     <div className={`${styles.notice} ${notice.state ? styles.active : ''}`}>
-      <div className={styles.notice__text}>Add to cart: {notice.productName}</div>
+      <div className={styles.notice__text}>{noticeText}{notice.title}</div>
     </div>
   );
 };

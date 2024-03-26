@@ -6,13 +6,13 @@ import { useOrderFunction } from "../utils/orderState"
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-    const { cart, setCart, totalCost, setTotalCost, addToCart, removeProductCart, increment, decrement, notice, setNotice } = useCartFunction()
+    const { cart, setCart, totalCost, setTotalCost, addToCart, removeProductCart, increment, decrement, notice, setNotice, isChecked } = useCartFunction()
     const { pharmacies, setPharmacies, selectedPharmacy, setSelectedPharmacy, products, setProducts, loadProductsByPharmacy, sortProducts, sortByFavorite } = usePharmacyFunction()
     const {  formData, updateFormData, setOrder, sendOrderOnDB, isActive, setIsActive } = useOrderFunction()
 
     const value= {cart, totalCost, 
         addToCart, setCart, setTotalCost, removeProductCart, 
-        increment, decrement, notice, setNotice, 
+        increment, decrement, notice, setNotice, isChecked,
         pharmacies, setPharmacies, selectedPharmacy, setSelectedPharmacy, 
         products, setProducts, loadProductsByPharmacy, sortProducts, sortByFavorite,
          formData, updateFormData, setOrder, sendOrderOnDB, isActive, setIsActive

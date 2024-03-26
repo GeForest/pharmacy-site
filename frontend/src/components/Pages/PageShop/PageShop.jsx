@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './PageShop.module.css'
 import PharmacyList from './PharmaciesList'
 import ProductsPharmacy from './ProductsPharmacy'
-import Notification from '../../Notices/NoticeAddToCart';
+import Notification from '../../Notices/Notice';
 
 function Shop() {
 

@@ -191,6 +191,24 @@
     cursor: pointer;
 }
 
+.bottom__button_open {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+.open__button {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #fff;
+}
+
 /* Mobile styles */
 
 @media (max-width: 768px) {

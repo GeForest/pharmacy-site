@@ -4,7 +4,7 @@ import { useAppContext } from "../../../context/AppContext"
 
 
 function Cart() {
-    const { cart, setCart, totalCost, setTotalCost, removeProductCart, increment, decrement, sendOrderOnDB } = useAppContext();
+    const { cart, setCart, totalCost, setTotalCost, removeProductCart, increment, decrement, sendOrderOnDB, setProducts } = useAppContext();
 
     return (
         <div className={styles.container}>
@@ -12,6 +12,7 @@ function Cart() {
                 <div className={styles.cart__body}>
                     {cart.map((product)=>{
                     const imagePath = require(`../../../assets/img-products/${product.img}`);
+                    console.log(totalCost);
                         return (
                         <div key={product._id} className={`${styles.body__item}`}>
                             <div className={styles.item__left}>
@@ -27,8 +28,8 @@ function Cart() {
                                         <span>{product.count}</span>
                                     </div>
                                     <div className={styles.count__buttons}>
-                                        <div onClick={()=>{increment(product._id, product.price)}}>+</div>
-                                        <div onClick={()=>{decrement(product, product._id, product.count)}}>-</div>
+                                        <div onClick={()=>{increment(product._id, product.price, setProducts)}}>+</div>
+                                        <div onClick={()=>{decrement(product, product._id, product.count, setProducts)}}>-</div>
                                     </div>
                                 </div>
                             </div>
