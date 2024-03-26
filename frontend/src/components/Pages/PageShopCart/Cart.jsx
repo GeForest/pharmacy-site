@@ -34,7 +34,7 @@ function Cart() {
                                 </div>
                             </div>
                             <div className={styles.item__remove}
-                                onClick={()=>removeProductCart(product)}
+                                onClick={()=>removeProductCart(product, setProducts)}
                             >&#10006;</div>
                         </div>
                         )

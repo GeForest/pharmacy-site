@@ -20,10 +20,13 @@ export const useCartFunction = () => {
     setTotalCost(prevTotalCost => prevTotalCost + product.price)
   }
 
-  const removeProductCart = (product) => {
+  const removeProductCart = (product, setProducts) => {
     setCart(cart.filter(el => el._id !== product._id))
     setIsChecked(prevState=> prevState.filter(el=>el !== product._id))
     setTotalCost(prevTotalCost => prevTotalCost - (product.price * product.count))
+    setProducts(prevProducts => prevProducts.map(prevProduct =>
+      prevProduct._id === id ? { ...prevProduct, count: prevProduct.count - 1 } : prevProduct
+    ));
   }
 
   const increment = (id, price, setProducts) => {
