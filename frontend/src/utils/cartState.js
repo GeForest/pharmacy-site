@@ -14,12 +14,9 @@ export const useCartFunction = () => {
   const [isChecked, setIsChecked] = useState([])
 
   const addToCart = (product, operation) => {
-    const productExist = cart.find(el => el._id === product._id)
-    if (!productExist) {
-      setCart([...cart, { ...product }])
-      setNotice(prevState=> ({ ...prevState, state: true, title: product.name, operation }))
-      setIsChecked(prevState=> [...prevState, product._id])
-    }
+    setCart([...cart, { ...product }])
+    setNotice(prevState=> ({ ...prevState, state: true, title: product.name, operation }))
+    setIsChecked(prevState=> [...prevState, product._id])
     setTotalCost(prevTotalCost => prevTotalCost + product.price)
   }
 
